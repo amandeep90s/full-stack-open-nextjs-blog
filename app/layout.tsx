@@ -11,17 +11,23 @@ export default function RootLayout({
     <html lang="en">
       <body className="flex flex-col min-h-screen p-4">
         <nav className="mb-4 border-b border-gray-300 pb-2">
-          <Link href="/" className="text-blue-500 px-4 hover:text-white">
+          <Link
+            href="/"
+            className="text-emerald-500 px-4 hover:text-emerald-300"
+          >
             Home
           </Link>
           {" | "}
-          <Link href="/blogs" className="text-blue-500 px-4 hover:text-white">
+          <Link
+            href="/blogs"
+            className="text-emerald-500 px-4 hover:text-emerald-300"
+          >
             Blogs
           </Link>
           {" | "}
           <Link
             href="/blogs/new"
-            className="text-blue-500 px-4 hover:text-white"
+            className="text-emerald-500 px-4 hover:text-emerald-300"
           >
             Add New
           </Link>

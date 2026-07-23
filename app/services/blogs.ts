@@ -1,4 +1,4 @@
-export const blogs = [
+const blogs = [
   {
     id: 1,
     title: "Blog 1",
@@ -21,3 +21,19 @@ export const blogs = [
     likes: 30,
   },
 ];
+
+let nextBlogId = 4;
+
+export const getBlogs = () => {
+  return blogs;
+};
+
+export const addBlog = (title: string, author: string, url: string) => {
+  blogs.push({
+    id: nextBlogId++,
+    title,
+    author,
+    url,
+    likes: 0,
+  });
+};
