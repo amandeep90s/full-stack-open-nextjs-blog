@@ -1,3 +1,4 @@
+import { likeBlogPost } from "@/app/actions/blog";
 import { getBlogById } from "@/app/services/blogs";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -28,12 +29,24 @@ const BlogPage = async ({ params }: { params: Promise<{ id: string }> }) => {
       </p>
 
       <p>Likes: {blog.likes}</p>
-      <Link
-        href="/blogs"
-        className="bg-emerald-600 inline-block text-white py-2 px-4 rounded-sm hover:bg-emerald-700 transition-colors"
-      >
-        Back
-      </Link>
+
+      <div className="flex items-center gap-4">
+        <form action={likeBlogPost}>
+          <input type="hidden" name="id" value={blog.id} />
+          <button
+            type="submit"
+            className="bg-rose-600 text-white py-2 px-4 rounded-sm hover:bg-rose-700 transition-colors"
+          >
+            Like
+          </button>
+        </form>
+        <Link
+          href="/blogs"
+          className="bg-emerald-600 inline-block text-white py-2 px-4 rounded-sm hover:bg-emerald-700 transition-colors"
+        >
+          Back
+        </Link>
+      </div>
     </div>
   );
 };
