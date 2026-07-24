@@ -1,0 +1,41 @@
+import { getBlogById } from "@/app/services/blogs";
+import Link from "next/link";
+import { notFound } from "next/navigation";
+
+const BlogPage = async ({ params }: { params: Promise<{ id: string }> }) => {
+  const { id } = await params;
+
+  const blog = getBlogById(Number(id));
+
+  if (!blog) {
+    notFound();
+  }
+
+  return (
+    <div className="border border-gray-300 p-4 mb-4 rounded space-y-4">
+      <h1 className="text-3xl font-medium">{blog.title}</h1>
+      <p>Author: {blog.author}</p>
+      <p>
+        URL:{" "}
+        <a
+          href={blog.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-blue-500 hover:underline"
+        >
+          {blog.url}
+        </a>
+      </p>
+
+      <p>Likes: {blog.likes}</p>
+      <Link
+        href="/blogs"
+        className="bg-emerald-600 inline-block text-white py-2 px-4 rounded-sm hover:bg-emerald-700 transition-colors"
+      >
+        Back
+      </Link>
+    </div>
+  );
+};
+
+export default BlogPage;
