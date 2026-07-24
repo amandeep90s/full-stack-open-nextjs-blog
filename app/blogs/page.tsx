@@ -1,10 +1,40 @@
 import { getBlogs } from "../services/blogs";
 
-const Blogs = () => {
-  const blogs = getBlogs();
+const Blogs = async ({
+  searchParams,
+}: {
+  searchParams: Promise<{ filter?: string }>;
+}) => {
+  const { filter } = await searchParams;
+
+  const allBlogs = getBlogs();
+
+  const blogs = filter
+    ? allBlogs.filter((blog) =>
+        blog.title.toLowerCase().includes(filter.toLowerCase()),
+      )
+    : allBlogs;
+
   return (
     <div className="space-y-4">
       <h1 className="text-3xl font-medium">Blogs</h1>
+
+      <form method="GET" action="/blogs" className="flex gap-2">
+        <input
+          type="search"
+          name="filter"
+          id="filter"
+          placeholder="Search blogs..."
+          defaultValue={filter}
+          className="border border-gray-300 rounded-sm px-3 py-2 flex-1"
+        />
+        <button
+          type="submit"
+          className="bg-emerald-600 text-white py-2 px-4 rounded-sm hover:bg-emerald-700 transition-colors"
+        >
+          Search
+        </button>
+      </form>
 
       {blogs.map((blog) => (
         <div
