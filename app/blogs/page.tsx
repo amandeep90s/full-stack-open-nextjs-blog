@@ -15,7 +15,7 @@ const Blogs = () => {
           <p>Author: {blog.author}</p>
           <p>Likes: {blog.likes}</p>
           <a
-            href={blog.url}
+            href={`/blogs/${blog.id}`}
             className="bg-emerald-600 inline-block text-white py-2 px-4 rounded-sm hover:bg-emerald-700 transition-colors"
           >
             Read more
