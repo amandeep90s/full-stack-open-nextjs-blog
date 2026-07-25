@@ -13,9 +13,18 @@ export const blogs = pgTable("blogs", {
   author: text("author").notNull(),
   url: text("url").notNull(),
   likes: integer("likes").notNull().default(0),
+  userId: integer("user_id")
+    .notNull()
+    .references(() => users.id),
 });
 
 // custom lower function
 export function lower(columnName: AnyPgColumn): SQL {
   return sql`lower(${columnName})`;
 }
+
+export const users = pgTable("users", {
+  id: serial("id").primaryKey(),
+  username: text("username").notNull().unique(),
+  name: text("name").notNull(),
+});
