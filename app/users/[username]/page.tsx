@@ -2,10 +2,10 @@ import { getUserWithBlogs } from "@/app/services/users";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
-const User = async ({ params }: { params: { id: string } }) => {
-  const { id } = await params;
+const User = async ({ params }: { params: { username: string } }) => {
+  const { username } = await params;
 
-  const user = await getUserWithBlogs(Number(id));
+  const user = await getUserWithBlogs(username);
 
   if (!user) {
     notFound();
