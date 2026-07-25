@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { getBlogs } from "../services/blogs";
 
 const Blogs = async ({
@@ -7,13 +8,7 @@ const Blogs = async ({
 }) => {
   const { filter } = await searchParams;
 
-  const allBlogs = getBlogs();
-
-  const blogs = filter
-    ? allBlogs.filter((blog) =>
-        blog.title.toLowerCase().includes(filter.toLowerCase()),
-      )
-    : allBlogs;
+  const blogs = await getBlogs(filter);
 
   return (
     <div className="space-y-4">
@@ -34,6 +29,14 @@ const Blogs = async ({
         >
           Search
         </button>
+        {filter && (
+          <Link
+            href="/blogs"
+            className="bg-rose-600 text-white py-2 px-4 rounded-sm hover:bg-rose-700 transition-colors"
+          >
+            Clear
+          </Link>
+        )}
       </form>
 
       {blogs.map((blog) => (
