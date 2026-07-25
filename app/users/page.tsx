@@ -14,7 +14,7 @@ const Users = async () => {
           className="border border-gray-300 p-4 mb-4 rounded space-y-4"
         >
           <Link
-            href={`/users/${user.id}`}
+            href={`/users/${user.username}`}
             className="text-xl font-semibold mb-2 hover:underline text-emerald-600 transition-colors"
           >
             {user.name}
