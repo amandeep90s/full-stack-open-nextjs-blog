@@ -26,6 +26,13 @@ export default function RootLayout({
           </Link>
           {" | "}
           <Link
+            href="/users"
+            className="text-emerald-500 px-4 hover:text-emerald-300"
+          >
+            Users
+          </Link>
+          {" | "}
+          <Link
             href="/blogs/new"
             className="text-emerald-500 px-4 hover:text-emerald-300"
           >
