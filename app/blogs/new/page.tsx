@@ -1,12 +1,16 @@
+"use client";
+
 import { createBlog } from "@/app/actions/blog";
+import { useActionState } from "react";
 
 const NewBlog = () => {
+  const [state, formAction] = useActionState(createBlog, { error: "" });
   return (
     <div className="space-y-4">
       <h1 className="text-3xl font-medium">Create New Blog</h1>
 
       <form
-        action={createBlog}
+        action={formAction}
         className="space-y-4 border border-gray-300 p-4 rounded"
       >
         <div>
@@ -17,6 +21,7 @@ const NewBlog = () => {
             type="text"
             id="title"
             name="title"
+            minLength={5}
             className="border border-gray-300 rounded-sm p-2 w-full"
             required
           />
@@ -30,6 +35,7 @@ const NewBlog = () => {
             type="text"
             id="author"
             name="author"
+            minLength={5}
             className="border border-gray-300 rounded-sm p-2 w-full"
             required
           />
@@ -43,6 +49,7 @@ const NewBlog = () => {
             type="url"
             id="url"
             name="url"
+            minLength={5}
             className="border border-gray-300 rounded-sm p-2 w-full"
             required
           />
@@ -54,6 +61,8 @@ const NewBlog = () => {
         >
           Create Blog
         </button>
+
+        {state.error && <p className="text-red-500 mt-3">{state.error}</p>}
       </form>
     </div>
   );
