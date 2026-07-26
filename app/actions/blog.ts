@@ -1,9 +1,9 @@
 "use server";
 
+import { auth } from "@/app/auth";
+import { addBlog, likeBlog } from "@/app/services/blogs";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
-import { auth } from "../auth";
-import { addBlog, likeBlog } from "../services/blogs";
 
 export const createBlog = async (formData: FormData) => {
   const session = await auth();
