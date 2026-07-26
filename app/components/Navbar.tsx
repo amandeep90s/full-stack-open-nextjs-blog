@@ -42,7 +42,7 @@ const Navbar = () => {
 
       <div>
         {session ? (
-          <>
+          <div className="space-x-4">
             <em>{session.user?.name} logged in </em>
 
             <button
@@ -51,14 +51,23 @@ const Navbar = () => {
             >
               Logout
             </button>
-          </>
+          </div>
         ) : (
-          <Link
-            href="/login"
-            className="bg-emerald-600 text-white py-2 px-4 rounded-sm hover:bg-emerald-700 transition-colors"
-          >
-            Login
-          </Link>
+          <div className="space-x-4">
+            <Link
+              href="/login"
+              className="bg-emerald-600 text-white py-2 px-4 rounded-sm hover:bg-emerald-700 transition-colors"
+            >
+              Login
+            </Link>
+
+            <Link
+              href="/register"
+              className="bg-rose-600 text-white py-2 px-4 rounded-sm hover:bg-rose-700 transition-colors"
+            >
+              Register
+            </Link>
+          </div>
         )}
       </div>
     </nav>
