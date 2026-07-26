@@ -4,7 +4,10 @@ import { createBlog } from "@/app/actions/blog";
 import { useActionState } from "react";
 
 const NewBlog = () => {
-  const [state, formAction] = useActionState(createBlog, { error: "" });
+  const [state, formAction] = useActionState(createBlog, {
+    error: "",
+    fields: { title: "", author: "", url: "" },
+  });
   return (
     <div className="space-y-4">
       <h1 className="text-3xl font-medium">Create New Blog</h1>
@@ -21,7 +24,8 @@ const NewBlog = () => {
             type="text"
             id="title"
             name="title"
-            minLength={5}
+            minLength={4}
+            defaultValue={state.fields?.title ?? ""}
             className="border border-gray-300 rounded-sm p-2 w-full"
             required
           />
@@ -36,6 +40,7 @@ const NewBlog = () => {
             id="author"
             name="author"
             minLength={5}
+            defaultValue={state.fields?.author ?? ""}
             className="border border-gray-300 rounded-sm p-2 w-full"
             required
           />
@@ -50,6 +55,7 @@ const NewBlog = () => {
             id="url"
             name="url"
             minLength={5}
+            defaultValue={state.fields?.url ?? ""}
             className="border border-gray-300 rounded-sm p-2 w-full"
             required
           />
