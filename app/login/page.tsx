@@ -54,6 +54,7 @@ export default function LoginPage() {
         </div>
         <button
           type="submit"
+          id="login-button"
           className="bg-emerald-600 w-full text-white py-2 px-4 rounded-sm hover:bg-emerald-700 transition-colors"
         >
           Login
