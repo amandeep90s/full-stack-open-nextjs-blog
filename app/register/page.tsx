@@ -1,6 +1,6 @@
 "use client";
 
-import { registerUser } from "../actions/users";
+import { registerUser } from "@/app/actions/users";
 
 export default function RegisterPage() {
   return (

@@ -1,5 +1,5 @@
+import { getUsers } from "@/app/services/users";
 import Link from "next/link";
-import { getUsers } from "../services/users";
 
 const Users = async () => {
   const users = await getUsers();
