@@ -1,14 +1,27 @@
 "use client";
 
 import { createBlog } from "@/app/actions/blog";
-import { useActionState } from "react";
-const initialState = { title: "", author: "", url: "" };
+import { useNotification } from "@/app/components/NotificationContext";
+import { useRouter } from "next/navigation";
+import { useActionState, useEffect } from "react";
+
+const initialState = {
+  error: "",
+  fields: { title: "", author: "", url: "" },
+  success: false,
+};
 
 const NewBlog = () => {
-  const [state, formAction] = useActionState(createBlog, {
-    error: "",
-    fields: initialState,
-  });
+  const [state, formAction] = useActionState(createBlog, initialState);
+  const { showNotification } = useNotification();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (state.success) {
+      showNotification("Blog created", "success");
+      router.push("/blogs");
+    }
+  }, [state, showNotification, router]);
 
   return (
     <div className="space-y-4">
