@@ -2,12 +2,14 @@
 
 import { createBlog } from "@/app/actions/blog";
 import { useActionState } from "react";
+const initialState = { title: "", author: "", url: "" };
 
 const NewBlog = () => {
   const [state, formAction] = useActionState(createBlog, {
     error: "",
-    fields: { title: "", author: "", url: "" },
+    fields: initialState,
   });
+
   return (
     <div className="space-y-4">
       <h1 className="text-3xl font-medium">Create New Blog</h1>
