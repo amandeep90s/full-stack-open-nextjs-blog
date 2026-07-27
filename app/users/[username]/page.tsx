@@ -12,7 +12,7 @@ const User = async ({ params }: { params: { username: string } }) => {
   }
 
   return (
-    <div className="border border-gray-300 p-4 rounded space-y-4">
+    <div className="container mx-auto border border-gray-300 rounded space-y-4">
       <h1 className="text-3xl font-medium">{user.name}</h1>
       <p>Username: {user.username}</p>
 
