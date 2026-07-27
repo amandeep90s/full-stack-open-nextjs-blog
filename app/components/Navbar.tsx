@@ -1,6 +1,7 @@
 "use client";
 
 import { signOut, useSession } from "next-auth/react";
+import Image from "next/image";
 import Link from "next/link";
 import NavLink from "./NavLink";
 
@@ -28,9 +29,15 @@ const Navbar = () => {
           )}
         </div>
 
-        <div>
+        <div className="">
           {session ? (
-            <div className="space-x-4">
+            <div className="flex items-center gap-4">
+              <Image
+                src="https://placehold.net/avatar-3.svg"
+                alt="User Avatar"
+                width={32}
+                height={32}
+              />
               <em className="text-gray-300 text-sm">
                 {session.user?.name} logged in
               </em>
