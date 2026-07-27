@@ -1,8 +1,21 @@
 import { addToReadingList, likeBlogPost } from "@/app/actions/blog";
 import { getBlogById, getReadingListEntry } from "@/app/services/blogs";
 import { getCurrentUser } from "@/app/services/session";
+import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+
+export const generateMetadata = async ({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}): Promise<Metadata> => {
+  const { id } = await params;
+  const blog = await getBlogById(Number(id));
+  return {
+    title: blog ? blog.title.slice(0, 50) : "Blog not found",
+  };
+};
 
 const BlogPage = async ({ params }: { params: Promise<{ id: string }> }) => {
   const { id } = await params;

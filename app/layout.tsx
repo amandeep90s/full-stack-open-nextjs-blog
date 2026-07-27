@@ -5,6 +5,13 @@ import AuthSessionProvider from "@/app/components/SessionProvider";
 import Footer from "./components/Footer";
 import "./globals.css";
 
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "MyBlog App",
+  description: "A simple blogs application built with Next.js",
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
