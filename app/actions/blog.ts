@@ -5,6 +5,7 @@ import { addBlog, likeBlog } from "@/app/services/blogs";
 import { getCurrentUser } from "@/app/services/session";
 import { db } from "@/db";
 import { readingList } from "@/db/schema";
+import { eq } from "drizzle-orm";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
@@ -79,5 +80,20 @@ export const addToReadingList = async (formData: FormData) => {
   await db.insert(readingList).values({ userId: user.id, blogId });
 
   revalidatePath(`/blogs/${blogId}`);
+  revalidatePath("/me");
+};
+
+export const markAsRead = async (formData: FormData) => {
+  const user = await getCurrentUser();
+  if (!user) redirect("/login");
+
+  const entryId = Number(formData.get("entryId"));
+  if (isNaN(entryId)) return;
+
+  await db
+    .update(readingList)
+    .set({ read: true })
+    .where(eq(readingList.id, entryId));
+
   revalidatePath("/me");
 };
