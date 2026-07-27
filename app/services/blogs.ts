@@ -7,11 +7,12 @@ export const getBlogs = async (filter?: string) => {
   let allBlogs;
 
   if (filter?.trim()) {
-    allBlogs = await db.query.blogs.findMany({
-      where: like(lower(blogs.title), `%${filter.toLowerCase()}%`),
-    });
+    allBlogs = await db
+      .select()
+      .from(blogs)
+      .where(like(lower(blogs.title), `%${filter.toLowerCase()}%`));
   } else {
-    allBlogs = await db.query.blogs.findMany();
+    allBlogs = await db.select().from(blogs);
   }
 
   return allBlogs.sort((a, b) => b.likes - a.likes);
