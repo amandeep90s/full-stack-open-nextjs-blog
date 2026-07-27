@@ -18,13 +18,13 @@ const Navbar = () => {
           MyBlog
         </Link>
         <div className="flex items-center gap-2">
-          <NavLink href="/">Home</NavLink>
-          <NavLink href="/blogs">Blogs</NavLink>
-          <NavLink href="/users">Users</NavLink>
+          <NavLink href="/">home</NavLink>
+          <NavLink href="/blogs">blogs</NavLink>
+          <NavLink href="/users">users</NavLink>
 
           {session && (
             <>
-              <NavLink href="/blogs/new">Add New</NavLink>
+              <NavLink href="/blogs/new">create new</NavLink>
             </>
           )}
         </div>
@@ -42,7 +42,7 @@ const Navbar = () => {
                 {session.user?.name} logged in
               </em>
 
-              <NavLink href="/me">My Profile</NavLink>
+              <NavLink href="/me">me</NavLink>
 
               <button
                 onClick={() => signOut()}
@@ -53,9 +53,9 @@ const Navbar = () => {
             </div>
           ) : (
             <div className="space-x-4">
-              <NavLink href="/login">Login</NavLink>
+              <NavLink href="/login">login</NavLink>
 
-              <NavLink href="/register">Register</NavLink>
+              <NavLink href="/register">register</NavLink>
             </div>
           )}
         </div>

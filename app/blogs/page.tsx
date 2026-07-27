@@ -19,12 +19,14 @@ const Blogs = async ({
           type="search"
           name="filter"
           id="filter"
+          data-testid="filter-input"
           placeholder="Search blogs..."
           defaultValue={filter}
           className="border border-gray-300 rounded-sm px-3 py-2 flex-1"
         />
         <button
           type="submit"
+          data-testid="search-button"
           className="bg-emerald-600 text-white py-2 px-4 rounded-sm hover:bg-emerald-700 transition-colors"
         >
           Search
@@ -39,21 +41,22 @@ const Blogs = async ({
         )}
       </form>
 
-      <div className="grid gap-4 xs:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+      <div
+        data-testid="blogs-list"
+        className="grid gap-4 xs:grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
+      >
         {blogs.map((blog) => (
           <div
             key={blog.id}
             className="border border-gray-300 p-4 rounded space-y-4"
           >
-            <h2 className="text-xl font-semibold mb-2">{blog.title}</h2>
+            <h2 className="text-xl font-semibold mb-2">
+              <Link href={`/blogs/${blog.id}`} className="hover:underline">
+                {blog.title}
+              </Link>
+            </h2>
             <p>Author: {blog.author}</p>
-            <p>Likes: {blog.likes}</p>
-            <a
-              href={`/blogs/${blog.id}`}
-              className="bg-emerald-600 inline-block text-white py-2 px-4 rounded-sm hover:bg-emerald-700 transition-colors"
-            >
-              Read more
-            </a>
+            <p>{blog.likes} likes</p>
           </div>
         ))}
       </div>
