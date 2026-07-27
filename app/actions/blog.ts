@@ -2,6 +2,9 @@
 
 import { auth } from "@/app/auth";
 import { addBlog, likeBlog } from "@/app/services/blogs";
+import { getCurrentUser } from "@/app/services/session";
+import { db } from "@/db";
+import { readingList } from "@/db/schema";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
@@ -64,4 +67,17 @@ export const likeBlogPost = async (formData: FormData) => {
     revalidatePath("/blogs");
     revalidatePath(`/blogs/${blogId}`);
   }
+};
+
+export const addToReadingList = async (formData: FormData) => {
+  const user = await getCurrentUser();
+  if (!user) redirect("/login");
+
+  const blogId = Number(formData.get("blogId"));
+  if (isNaN(blogId)) return;
+
+  await db.insert(readingList).values({ userId: user.id, blogId });
+
+  revalidatePath(`/blogs/${blogId}`);
+  revalidatePath("/me");
 };

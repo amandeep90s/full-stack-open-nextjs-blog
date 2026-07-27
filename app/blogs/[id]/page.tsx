@@ -1,16 +1,24 @@
-import { likeBlogPost } from "@/app/actions/blog";
-import { getBlogById } from "@/app/services/blogs";
+import { addToReadingList, likeBlogPost } from "@/app/actions/blog";
+import { getBlogById, getReadingListEntry } from "@/app/services/blogs";
+import { getCurrentUser } from "@/app/services/session";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
 const BlogPage = async ({ params }: { params: Promise<{ id: string }> }) => {
   const { id } = await params;
 
-  const blog = await getBlogById(Number(id));
+  const [blog, user] = await Promise.all([
+    getBlogById(Number(id)),
+    getCurrentUser(),
+  ]);
 
   if (!blog) {
     notFound();
   }
+
+  const isOwner = user?.id === blog.userId;
+  const inReadingList =
+    user && !isOwner ? await getReadingListEntry(blog.id, user.id) : null;
 
   return (
     <div className="container mx-auto border border-gray-300 p-4 mb-4 rounded space-y-4">
@@ -40,9 +48,28 @@ const BlogPage = async ({ params }: { params: Promise<{ id: string }> }) => {
             Like
           </button>
         </form>
+
+        {user &&
+          !isOwner &&
+          (inReadingList ? (
+            <span className="text-gray-500 text-sm">
+              Already in reading list
+            </span>
+          ) : (
+            <form action={addToReadingList}>
+              <input type="hidden" name="blogId" value={blog.id} />
+              <button
+                type="submit"
+                className="bg-emerald-600 text-white py-2 px-4 rounded-sm hover:bg-emerald-700 transition-colors"
+              >
+                Add to reading list
+              </button>
+            </form>
+          ))}
+
         <Link
           href="/blogs"
-          className="bg-emerald-600 inline-block text-white py-2 px-4 rounded-sm hover:bg-emerald-700 transition-colors"
+          className="bg-gray-600 inline-block text-white py-2 px-4 rounded-sm hover:bg-gray-700 transition-colors"
         >
           Back
         </Link>
