@@ -24,7 +24,7 @@ const NewBlog = () => {
   }, [state, showNotification, router]);
 
   return (
-    <div className="space-y-4">
+    <div className="container mx-auto space-y-4">
       <h1 className="text-3xl font-medium">Create New Blog</h1>
 
       <form

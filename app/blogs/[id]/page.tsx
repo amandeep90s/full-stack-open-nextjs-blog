@@ -13,7 +13,7 @@ const BlogPage = async ({ params }: { params: Promise<{ id: string }> }) => {
   }
 
   return (
-    <div className="border border-gray-300 p-4 mb-4 rounded space-y-4">
+    <div className="container mx-auto border border-gray-300 p-4 mb-4 rounded space-y-4">
       <h1 className="text-3xl font-medium">{blog.title}</h1>
       <p>Author: {blog.author}</p>
       <p>

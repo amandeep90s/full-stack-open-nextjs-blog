@@ -5,7 +5,7 @@ const Users = async () => {
   const users = await getUsers();
 
   return (
-    <div className="space-y-4">
+    <div className="container mx-auto space-y-4">
       <h1 className="text-3xl font-medium">Users</h1>
 
       {users.map((user) => (
