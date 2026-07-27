@@ -34,9 +34,14 @@ const BlogPage = async ({ params }: { params: Promise<{ id: string }> }) => {
     user && !isOwner ? await getReadingListEntry(blog.id, user.id) : null;
 
   return (
-    <div className="container mx-auto border border-gray-300 p-4 mb-4 rounded space-y-4">
-      <h1 className="text-3xl font-medium">{blog.title}</h1>
-      <p>Author: {blog.author}</p>
+    <div
+      data-testid="blog-detail"
+      className="container mx-auto border border-gray-300 p-4 mb-4 rounded space-y-4"
+    >
+      <h1 data-testid="blog-title" className="text-3xl font-medium">
+        {blog.title}
+      </h1>
+      <p data-testid="blog-author">Author: {blog.author}</p>
       <p>
         URL:{" "}
         <a
@@ -73,6 +78,7 @@ const BlogPage = async ({ params }: { params: Promise<{ id: string }> }) => {
               <input type="hidden" name="blogId" value={blog.id} />
               <button
                 type="submit"
+                data-testid="add-to-reading-list-button"
                 className="bg-emerald-600 text-white py-2 px-4 rounded-sm hover:bg-emerald-700 transition-colors"
               >
                 Add to reading list

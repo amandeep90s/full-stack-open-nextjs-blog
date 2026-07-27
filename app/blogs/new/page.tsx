@@ -78,7 +78,7 @@ const NewBlog = () => {
 
         <button
           type="submit"
-          id="create-blog-button"
+          data-testid="create-blog-button"
           className="bg-emerald-600 text-white py-2 px-4 rounded-sm hover:bg-emerald-700 transition-colors"
         >
           Create Blog
