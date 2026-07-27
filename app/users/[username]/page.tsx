@@ -2,7 +2,7 @@ import { getUserWithBlogs } from "@/app/services/users";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
-const User = async ({ params }: { params: { username: string } }) => {
+const User = async ({ params }: { params: Promise<{ username: string }> }) => {
   const { username } = await params;
 
   const user = await getUserWithBlogs(username);
@@ -12,7 +12,7 @@ const User = async ({ params }: { params: { username: string } }) => {
   }
 
   return (
-    <div className="container mx-auto border border-gray-300 rounded space-y-4">
+    <div className="container mx-auto border border-gray-300 rounded space-y-4 p-4">
       <h1 className="text-3xl font-medium">{user.name}</h1>
       <p>Username: {user.username}</p>
 

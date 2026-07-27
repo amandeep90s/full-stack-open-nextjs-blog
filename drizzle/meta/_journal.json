@@ -8,6 +8,13 @@
       "when": 1785001720625,
       "tag": "0000_modern_stardust",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1785169690418,
+      "tag": "0001_famous_the_twelve",
+      "breakpoints": true
     }
   ]
 }

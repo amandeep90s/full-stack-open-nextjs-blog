@@ -33,6 +33,8 @@ const Navbar = () => {
             <div className="space-x-4">
               <em>{session.user?.name} logged in </em>
 
+              <NavLink href="/me">My Profile</NavLink>
+
               <button
                 onClick={() => signOut()}
                 className="bg-emerald-600 text-white py-2 px-4 rounded-sm hover:bg-emerald-700 transition-colors"
