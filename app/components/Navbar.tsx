@@ -8,8 +8,8 @@ const Navbar = () => {
   const { data: session } = useSession();
 
   return (
-    <nav className="w-full border-b border-gray-300">
-      <div className="container mx-auto flex items-center justify-between py-3">
+    <nav className="w-full bg-gray-900 border-b border-gray-700">
+      <div className="container mx-auto flex items-center justify-between py-3 px-4">
         <Link
           href="/"
           className="text-white text-3xl font-bold hover:text-emerald-300"
@@ -31,7 +31,9 @@ const Navbar = () => {
         <div>
           {session ? (
             <div className="space-x-4">
-              <em>{session.user?.name} logged in </em>
+              <em className="text-gray-300 text-sm">
+                {session.user?.name} logged in
+              </em>
 
               <NavLink href="/me">My Profile</NavLink>
 
