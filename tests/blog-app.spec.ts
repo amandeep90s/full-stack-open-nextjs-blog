@@ -266,6 +266,7 @@ test.describe("Blog Application", () => {
       )
 
       await page.goto("/blogs")
+      await page.waitForLoadState("networkidle")
 
       const blogsList = page.getByTestId("blogs-list")
 
@@ -289,6 +290,7 @@ test.describe("Blog Application", () => {
       await createBlog(page, "Test Blog", "Test Author", "http://testblog.com")
 
       await page.goto("/blogs")
+      await page.waitForLoadState("networkidle")
 
       // Should show 0 likes initially
       const blogsList = page.getByTestId("blogs-list")
